@@ -19,7 +19,7 @@ jobs:
           git merge -m "Release new version" ${{ github.ref_name }}
           git push
 
-  release:
+  release-tag:
     runs-on: ubuntu-latest
     needs: merge-into-master
     permissions:
