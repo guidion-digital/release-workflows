@@ -39,3 +39,10 @@ jobs:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
+  completed:
+    needs: release-tag
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tests completed # Needed because matrix tests have dynamic workflow names based on the folder name. This is something we cannot make a required test from.
+        run: echo "All tests completed"
