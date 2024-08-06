@@ -8,6 +8,8 @@ on:
 jobs:
   release-tag:
     uses: ./.github/workflows/github-release-tag.yaml
+    permissions:
+      contents: write
 
   retagging:
     needs: release-tag
