@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       new_tag:
-        description: The tag or reference to use
+        description: The tag or reference to use as input for releasing latest major version from
         type: string
         required: true
 
