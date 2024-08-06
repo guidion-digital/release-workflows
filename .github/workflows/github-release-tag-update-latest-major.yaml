@@ -21,16 +21,10 @@ jobs:
         tag: ${{ steps.tag_version.outputs.new_tag }}
         name: Release ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ steps.tag_version.outputs.changelog }}
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Echo major version number
-      id: debug
-      run: echo ${{ steps.tag_version.outputs.new_tag }}
     - name: Get major version number
       id: major_version
       run: echo major_version=$(echo "${{ steps.tag_version.outputs.new_tag }}" | cut -c1) >> $GITHUB_OUTPUT
     - name: Tag new target
-      run: git tag -f ${{ steps.major_version.outputs.major_version }} ${{ steps.tag_version.outputs.new_tag }}
+      run: git tag -f v${{ steps.major_version.outputs.major_version }} ${{ steps.tag_version.outputs.new_tag }}
     - name: Push new tag
-      run: git push origin ${{ steps.major_version.outputs.major_version }} --force
+      run: git push origin v${{ steps.major_version.outputs.major_version }} --force
