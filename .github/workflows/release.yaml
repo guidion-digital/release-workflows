@@ -8,10 +8,6 @@ on:
 jobs:
   # release new tag for the workflow
   release-module-version:
-<<<<<<< Updated upstream
-    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag-update-latest-major.yaml@1.1.0
-=======
     uses: guidion-digital/release-workflows/.github/workflows/github-release-tag-update-latest-major.yaml@master
->>>>>>> Stashed changes
     permissions:
       contents: write
