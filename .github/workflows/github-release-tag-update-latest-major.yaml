@@ -1,0 +1,46 @@
+name: Update Main Version
+run-name: Move ${{ github.event.inputs.major_version }} to ${{ github.event.inputs.target }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: The tag or reference to use
+        required: true
+      major_version:
+        type: choice
+        description: The major version to update
+        options:
+          - v4
+          - v3
+          - v2
+
+jobs:
+  release-tag:
+    secrets: inherit
+    permissions:
+      contents: write
+    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@1.0.0
+
+  tag:
+    needs: release-tag
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    # - name: Git config
+    #   run: |
+    #     git config user.name "github-actions[bot]"
+    #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    # - name: Tag new target
+    #   run: git tag -f ${{ github.event.inputs.major_version }} ${{ github.event.inputs.target }}
+    # - name: Push new tag
+    #   run: git push origin ${{ github.event.inputs.major_version }} --force
+    - name: Get major version number
+      id: major_version
+      run: echo major_version=${${{ needs.release-tag.last_version }}:0:1} >> $GITHUB_OUTPUT
+    - name: Tag new target
+      run: git tag -f ${{ steps.major_version.outputs.major_version }} ${{ needs.release-tag.last_version }}
+    - name: Push new tag
+      run: git push origin ${{ steps.major_version.outputs.major_version }} --force

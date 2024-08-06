@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      last_version: ${{ steps.tag_version.outputs.new_tag }}
     steps:
       - uses: actions/checkout@v4
       - name: Bump version and push tag
