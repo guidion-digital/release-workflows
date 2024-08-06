@@ -1,5 +1,9 @@
 on:
   workflow_call:
+    outputs:
+      new_tag:
+        description: "Latest tag released by workflow"
+        value: ${{ jobs.release-tag.outputs.new_tag }}
 
 concurrency:
   group: release
@@ -10,7 +14,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      last_version: ${{ steps.tag_version.outputs.new_tag }}
+      new_tag: ${{ steps.tag_version.outputs.new_tag }}
     steps:
       - uses: actions/checkout@v4
       - name: Bump version and push tag

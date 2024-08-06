@@ -6,8 +6,13 @@ on:
       - master
 
 jobs:
-  # release new tag for the workflow
-  release-module-version:
+  release-tag:
+    uses: ./.github/workflows/github-release-tag.yaml
+
+  retagging:
+    needs: release-tag
     uses: ./.github/workflows/github-release-tag-update-latest-major.yaml
     permissions:
       contents: write
+    with:
+      new_tag: ${{ needs.release-tag.outputs.new_tag }}
