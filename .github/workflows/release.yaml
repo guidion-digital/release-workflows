@@ -1,0 +1,13 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  # release new tag for the workflow
+  release-module-version:
+    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@1
+    permissions:
+      contents: write
