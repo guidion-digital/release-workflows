@@ -1,3 +1,5 @@
+name: Update latest Major Version
+
 on:
   workflow_call:
 
@@ -6,7 +8,7 @@ jobs:
     secrets: inherit
     permissions:
       contents: write
-    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@1.2.0
+    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@1.2.1
 
   tag:
     needs: release-tag
@@ -17,11 +19,11 @@ jobs:
         fetch-depth: 0
     - name: Echo major version number
       id: debug
-      run: echo ${{ needs.release-tag.last_version }}
+      run: echo ${{ needs.release-tag.outputs.last_version }}
     - name: Get major version number
       id: major_version
-      run: echo major_version=(echo "${{ needs.release-tag.last_version }}" | cut -c1) >> $GITHUB_OUTPUT
+      run: echo major_version=$(echo "${{ needs.release-tag.outputs.last_version }}" | cut -c1) >> $GITHUB_OUTPUT
     - name: Tag new target
-      run: git tag -f ${{ steps.major_version.outputs.major_version }} ${{ needs.release-tag.last_version }}
+      run: git tag -f ${{ steps.major_version.outputs.major_version }} ${{ needs.release-tag.outputs.last_version }}
     - name: Push new tag
       run: git push origin ${{ steps.major_version.outputs.major_version }} --force
