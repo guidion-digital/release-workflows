@@ -22,7 +22,7 @@ jobs:
       run: echo ${{ needs.release-tag.last_version }}
     - name: Get major version number
       id: major_version
-      run: echo major_version=${${{ needs.release-tag.last_version }}:0:1} >> $GITHUB_OUTPUT
+      run: echo major_version=(echo "${{ needs.release-tag.last_version }}" | cut -c1) >> $GITHUB_OUTPUT
     - name: Tag new target
       run: git tag -f ${{ steps.major_version.outputs.major_version }} ${{ needs.release-tag.last_version }}
     - name: Push new tag
