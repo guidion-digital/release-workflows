@@ -11,4 +11,4 @@ on:
 
 jobs:
   release-dry-run:
-    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag-dry-run.yaml@1
+    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag-dry-run.yaml@1.0.0

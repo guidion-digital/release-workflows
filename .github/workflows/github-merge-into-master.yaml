@@ -2,7 +2,7 @@ on:
   workflow_call:
 
 concurrency:
-  group: releasing
+  group: release
 
 jobs:
   merge-into-master:

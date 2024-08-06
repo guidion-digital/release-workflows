@@ -8,6 +8,6 @@ on:
 jobs:
   # release new tag for the workflow
   release-module-version:
-    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@1
+    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag-update-latest-major.yaml@1.1.0
     permissions:
       contents: write
