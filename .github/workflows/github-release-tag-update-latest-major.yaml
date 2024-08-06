@@ -17,14 +17,9 @@ jobs:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    # - name: Git config
-    #   run: |
-    #     git config user.name "github-actions[bot]"
-    #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    # - name: Tag new target
-    #   run: git tag -f ${{ github.event.inputs.major_version }} ${{ github.event.inputs.target }}
-    # - name: Push new tag
-    #   run: git push origin ${{ github.event.inputs.major_version }} --force
+    - name: Echo major version number
+      id: debug
+      run: echo ${{ needs.release-tag.last_version }}
     - name: Get major version number
       id: major_version
       run: echo major_version=${${{ needs.release-tag.last_version }}:0:1} >> $GITHUB_OUTPUT
