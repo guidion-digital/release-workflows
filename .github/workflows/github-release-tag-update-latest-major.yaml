@@ -25,6 +25,6 @@ jobs:
       id: major_version
       run: echo major_version=$(echo "${{ steps.tag_version.outputs.new_tag }}" | cut -c1) >> $GITHUB_OUTPUT
     - name: Tag new target
-      run: git tag -f ${{ steps.major_version.outputs.major_version }} ${{ steps.tag_version.outputs.new_tag }}
+      run: git tag -f v${{ steps.major_version.outputs.major_version }} ${{ steps.tag_version.outputs.new_tag }}
     - name: Push new tag
-      run: git push origin ${{ steps.major_version.outputs.major_version }} --force
+      run: git push origin v${{ steps.major_version.outputs.major_version }} --force
