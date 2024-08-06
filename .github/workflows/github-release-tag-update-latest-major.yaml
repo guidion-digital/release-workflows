@@ -8,7 +8,7 @@ jobs:
     secrets: inherit
     permissions:
       contents: write
-    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@1.0.2
+    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@1.1.0
 
   tag:
     needs: release-tag
