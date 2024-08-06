@@ -1,5 +1,3 @@
-name: Update latest Major Version
-
 on:
   workflow_call:
 
@@ -8,7 +6,7 @@ jobs:
     secrets: inherit
     permissions:
       contents: write
-    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@1.1.0
+    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@1.2.0
 
   tag:
     needs: release-tag
