@@ -46,7 +46,7 @@ jobs:
           nix run nixpkgs#act -- --help
       - name: Run act with --dry-run
         run: |
-          nix run nixpkgs#act -- --dryrun
+          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --dryrun
       - name: Run act with medium image
         run: |
           nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest
