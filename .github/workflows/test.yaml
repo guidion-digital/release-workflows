@@ -65,6 +65,7 @@ jobs:
         run: |
           pwd
           ls -lah
+          cd .github
           nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --dryrun --eventpath event.json workflow_call
       # - name: Run act with medium image
       #   working-directory: .github/workflows
