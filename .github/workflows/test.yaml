@@ -28,9 +28,24 @@ jobs:
         run: |
           find .github/workflows -type f \( -iname \*.yaml -o -iname \*.yml \) \
             | xargs -I {} action-validator --verbose {}
+  nektos-act:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Install nix
+        run: |
+          echo y | sh <(curl -L https://nixos.org/nix/install) --no-daemon
+
+      - name: Run act
+        run: |
+          nix-shell -p act
 
   release-dry-run:
-    needs: actions
+    needs: nektos-act
     uses: ./.github/workflows/github-release-tag-dry-run.yaml
 
     
