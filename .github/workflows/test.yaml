@@ -55,6 +55,7 @@ jobs:
               }
             }
           }" > event.json
+      - run: ls -lah
       - run: ls -lah .github
       - run: ls -lah .github/workflows
       - name: Run act with --dry-run
