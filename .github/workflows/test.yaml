@@ -45,7 +45,7 @@ jobs:
         with:
           submodules: true
       - run: |
-          echo "{
+          echo '{
             "pull_request": {
               "head": {
                 "ref": "feature-pr-branch"
@@ -54,7 +54,7 @@ jobs:
                 "ref": "master"
               }
             }
-          }" > event.json
+          }' > event.json
       - run: ls -lah
       - run: ls -lah .github
       - run: ls -lah .github/workflows
