@@ -40,7 +40,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Install act
         run: |
-          nix-env -iA nixpkgs.act
+          nix-shell -p act
       - name: Run act
         run: |
           act
