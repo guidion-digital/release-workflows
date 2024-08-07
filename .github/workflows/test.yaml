@@ -38,12 +38,12 @@ jobs:
       - name: Install nix
         run: |
           echo y | curl -L https://nixos.org/nix/install | sh -s -- --daemon
-      - name: Type act
-        run: |
-          type act
       - name: Restart shell
         run: |
           source ~/.bashrc
+      - name: Type act
+        run: |
+          type act
       - name: Install act
         run: |
           nix-env -iA nixpkgs.act
