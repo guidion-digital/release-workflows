@@ -55,10 +55,12 @@ jobs:
               }
             }
           }' > event.json
+      - run: cat event.json        
       - run: ls -lah
       - run: ls -lah .github
       - run: ls -lah .github/workflows
       - name: Run act with --dry-run
+        working-directory: ./github/workflows
         run: |
           nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --dryrun --eventpath event.json workflow_call
       - name: Run act with medium image
