@@ -44,11 +44,22 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+      - run: |
+          echo "{
+            "pull_request": {
+              "head": {
+                "ref": "feature-pr-branch"
+              },
+              "base": {
+                "ref": "master"
+              }
+            }
+          }" > event.json
       - run: ls -lah .github
       - run: ls -lah .github/workflows
       - name: Run act with --dry-run
         run: |
-          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --dryrun workflow_call
+          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --dryrun --event-path event.json workflow_call
       - name: Run act with medium image
         run: |
           nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest workflow_call
