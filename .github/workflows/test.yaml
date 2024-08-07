@@ -43,10 +43,7 @@ jobs:
           nix-shell -p act
       - name: Run act
         run: |
-          nix run nixpkgs#act
-      - name: Run act
-        run: |
-          act
+          nix run nixpkgs#act --action-offline-mode
 
   # release-dry-run:
   #   needs: nektos-act
