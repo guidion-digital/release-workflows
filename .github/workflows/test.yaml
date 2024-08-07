@@ -48,10 +48,10 @@ jobs:
       - run: ls -lah .github/workflows
       - name: Run act with --dry-run
         run: |
-          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --dryrun pull_request
+          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --dryrun workflow_call
       - name: Run act with medium image
         run: |
-          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest pull_request
+          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest workflow_call
 
   # release-dry-run:
   #   needs: nektos-act
