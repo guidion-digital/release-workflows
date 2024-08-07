@@ -41,6 +41,9 @@ jobs:
       - name: Install act
         run: |
           nix-env -iA nixpkgs.act
+      - name: Type act
+        run: |
+          type act
       - name: Run act
         run: |
           act
