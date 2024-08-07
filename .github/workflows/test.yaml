@@ -56,7 +56,7 @@ jobs:
             }
           }' > event.json
       - run: cat event.json
-        working-directory: .github/workflows       
+        # working-directory: .github/workflows    
       - run: ls -lah
       - run: ls -lah .github
       - run: ls -lah .github/workflows
