@@ -43,6 +43,9 @@ jobs:
           nix-shell -p act
       - name: Run act
         run: |
+          nix run nixpkgs#act
+      - name: Run act
+        run: |
           act
 
   # release-dry-run:
