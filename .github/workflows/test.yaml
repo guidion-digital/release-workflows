@@ -35,14 +35,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
-
       - name: Install nix
         run: |
           echo y | sh <(curl -L https://nixos.org/nix/install) --no-daemon
-
+      - name: Install act
+        run: |
+          nix-env -iA nixpkgs.act
       - name: Run act
         run: |
-          nix-shell -p act
+          act
 
   release-dry-run:
     needs: nektos-act
