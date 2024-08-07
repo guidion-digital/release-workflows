@@ -38,7 +38,7 @@ jobs:
           submodules: true
       - name: Install nix
         run: |
-          echo y | sh <(curl -L https://nixos.org/nix/install) --no-daemon
+          echo y | curl -L https://nixos.org/nix/install | sh -s -- --daemon
       - name: Install act
         run: |
           nix-env -iA nixpkgs.act
