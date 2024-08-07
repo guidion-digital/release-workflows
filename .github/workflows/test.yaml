@@ -41,9 +41,15 @@ jobs:
       - name: Install act
         run: |
           nix-shell -p act
-      - name: Run act
+      - name: Run act with --help
         run: |
           nix run nixpkgs#act -- --help
+      - name: Run act with --dry-run
+        run: |
+          nix run nixpkgs#act -- --dryrun
+      - name: Run act with medium image
+        run: |
+          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest
 
   # release-dry-run:
   #   needs: nektos-act
