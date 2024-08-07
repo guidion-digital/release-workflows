@@ -39,11 +39,11 @@ jobs:
       - name: Install act
         run: |
           nix-shell -p act
-      - name: Run act with --help
-        run: |
-          nix run nixpkgs#act -- --help
+      # - name: Run act with --help
+      #   run: |
+      #     nix run nixpkgs#act -- --help
       - name: Create event.json
-        working-directory: .github/workflows
+        # working-directory: .github/workflows
         run: |
           echo '{
             "pull_request": {
