@@ -44,12 +44,14 @@ jobs:
       - name: Run act with --help
         run: |
           nix run nixpkgs#act -- --help
+      - run: pwd
+      - run: ls -lah
       - name: Run act with --dry-run
         run: |
           nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --dryrun pull_request
-      # - name: Run act with medium image
-      #   run: |
-      #     nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest
+      - name: Run act with medium image
+        run: |
+          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest pull_request
 
   # release-dry-run:
   #   needs: nektos-act
