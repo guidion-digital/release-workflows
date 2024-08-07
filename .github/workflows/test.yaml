@@ -29,6 +29,7 @@ jobs:
           find .github/workflows -type f \( -iname \*.yaml -o -iname \*.yml \) \
             | xargs -I {} action-validator --verbose {}
   nektos-act:
+    needs: actions
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
