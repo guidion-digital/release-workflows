@@ -44,6 +44,9 @@ jobs:
       - name: Type act
         run: |
           type act
+      - name: Restart shell
+        run: |
+          source ~/.bashrc
       - name: Run act
         run: |
           act
