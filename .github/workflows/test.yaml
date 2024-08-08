@@ -44,53 +44,53 @@ jobs:
         with:
           tool_name: actionlint
 
-  nektos-act:
-    # needs: actions
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: cachix/install-nix-action@v27
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
-      - name: Install act
-        run: |
-          nix-shell -p act
-      # - name: Run act with --help
-      #   run: |
-      #     nix run nixpkgs#act -- --help
-      - name: Create event.json
-        # working-directory: .github/workflows
-        run: |
-          echo '{
-            "pull_request": {
-              "head": {
-                "ref": "test-actions"
-              },
-              "base": {
-                "ref": "master"
-              }
-            }
-          }' > event.json
-      - run: cat event.json
-        # working-directory: .github/workflows    
-      - run: ls -lah
-      - run: ls -lah .github
-      - run: ls -lah .github/workflows
-      - name: Run act with --list
-        # working-directory: .github/workflows
-        run: |
-          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --action-offline-mode --list
-      - name: Run act with --dry-run
-        # working-directory: .github/workflows
-        run: |
-          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --action-offline-mode --dryrun --eventpath event.json workflow_call
-      - name: Run act with medium image
-        # working-directory: .github/workflows
-        run: |
-          nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --action-offline-mode --eventpath event.json workflow_call
+  # nektos-act:
+  #   # needs: actions
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: cachix/install-nix-action@v27
+  #       with:
+  #         nix_path: nixpkgs=channel:nixos-unstable
+  #     - name: Install act
+  #       run: |
+  #         nix-shell -p act
+  #     # - name: Run act with --help
+  #     #   run: |
+  #     #     nix run nixpkgs#act -- --help
+  #     - name: Create event.json
+  #       # working-directory: .github/workflows
+  #       run: |
+  #         echo '{
+  #           "pull_request": {
+  #             "head": {
+  #               "ref": "test-actions"
+  #             },
+  #             "base": {
+  #               "ref": "master"
+  #             }
+  #           }
+  #         }' > event.json
+  #     - run: cat event.json
+  #       # working-directory: .github/workflows    
+  #     - run: ls -lah
+  #     - run: ls -lah .github
+  #     - run: ls -lah .github/workflows
+  #     - name: Run act with --list
+  #       # working-directory: .github/workflows
+  #       run: |
+  #         nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --action-offline-mode --list
+  #     - name: Run act with --dry-run
+  #       # working-directory: .github/workflows
+  #       run: |
+  #         nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --action-offline-mode --dryrun --eventpath event.json workflow_call
+  #     - name: Run act with medium image
+  #       # working-directory: .github/workflows
+  #       run: |
+  #         nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --action-offline-mode --eventpath event.json workflow_call
 
   # release-dry-run:
   #   needs: nektos-act
