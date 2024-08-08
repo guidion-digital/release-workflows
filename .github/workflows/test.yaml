@@ -27,6 +27,13 @@ jobs:
   #         find .github/workflows -type f \( -iname \*.yaml -o -iname \*.yml \) \
   #           | xargs -I {} action-validator --verbose {}
 
+  reviewdog:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: reviewdog/action-setup@v1
+      with:
+        reviewdog_version: latest
+        
   nektos-act:
     # needs: actions
     runs-on: ubuntu-latest
@@ -74,9 +81,6 @@ jobs:
         # working-directory: .github/workflows
         run: |
           nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --action-offline-mode --eventpath event.json workflow_call
-      - uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
 
   # release-dry-run:
   #   needs: nektos-act
