@@ -10,13 +10,13 @@ on:
       - master
 
 jobs:
-  reviewdog:
+  test:
     uses: ./.github/workflows/github-test-workflow.yaml
     permissions:
       pull-requests: write
 
   release-dry-run:
-    needs: reviewdog
+    needs: test
     uses: ./.github/workflows/github-release-tag-dry-run.yaml
     with:
       branch: acc
