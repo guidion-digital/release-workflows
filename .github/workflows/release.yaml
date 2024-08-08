@@ -2,6 +2,11 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      rollback-tag:
+        description: 'Tag version to rollback to'
+        required: true
+        type: number
   push:
     branches:
       - master
@@ -22,4 +27,4 @@ jobs:
     permissions:
       contents: write
     with:
-      new_tag: ${{ needs.release-tag.outputs.new_tag }}
+      new_tag: ${{ needs.release-tag.outputs.new_tag || inputs.rollback-tag }}
