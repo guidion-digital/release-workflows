@@ -33,17 +33,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # ...
-      # - run: |
-      #     sudo chown -R root:root $GITHUB_WORKSPACE
-      - uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest # Optional. [latest,nightly,v.X.Y.Z]
-      - name: Run reviewdog
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          reviewdog --f=golint -name=golint-github-check -reporter=github-pr-review
+      - name: reviewdog-suggester
+        uses: reviewdog/action-suggester@v1.17.0
+            
 
   nektos-act:
     # needs: actions
