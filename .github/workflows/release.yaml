@@ -21,7 +21,7 @@ jobs:
       branch: ${{ github.ref_name }}
 
   retagging:
-    if: ${{ needs.release-tag.result != 'failure' }}
+    if: ${{ !cancelled() && needs.release-tag.result != 'failure' }}
     needs: release-tag
     uses: ./.github/workflows/github-release-tag-update-latest-major.yaml
     permissions:
