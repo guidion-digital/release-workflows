@@ -33,7 +33,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: reviewdog/action-actionlint@v1
-      - uses: reviewdog/action-suggester@v1.17.0
+        with:
+          tool_name: actionlint
+          reporter: github-pr-review
+      # - uses: reviewdog/action-suggester@v1.17.0
             
 
   nektos-act:
