@@ -5,7 +5,6 @@ on:
         description: The branch to run this on
         type: string
         required: true
-        default: acc
 
 concurrency:
   group: release
