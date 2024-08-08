@@ -74,6 +74,9 @@ jobs:
         # working-directory: .github/workflows
         run: |
           nix run nixpkgs#act -- -P catthehacker/ubuntu:act-latest --action-offline-mode --eventpath event.json workflow_call
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
 
   # release-dry-run:
   #   needs: nektos-act
