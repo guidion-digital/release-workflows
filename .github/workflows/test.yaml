@@ -28,3 +28,5 @@ jobs:
   release-dry-run:
     needs: reviewdog
     uses: ./.github/workflows/github-release-tag-dry-run.yaml
+    with:
+      branch: acc
