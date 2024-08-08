@@ -42,7 +42,7 @@ jobs:
       #     reporter: github-pr-review
       - uses: reviewdog/action-suggester@v1.17.0
         with:
-          tool_name: actionlint
+          tool_name: actionlint, reviewdog-suggester
 
   # nektos-act:
   #   # needs: actions
