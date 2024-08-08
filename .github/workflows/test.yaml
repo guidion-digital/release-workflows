@@ -30,6 +30,11 @@ jobs:
   reviewdog:
     name: reviewdog
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - uses: reviewdog/action-actionlint@v1
