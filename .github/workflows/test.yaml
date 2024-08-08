@@ -19,4 +19,4 @@ jobs:
     needs: test-workflow
     uses: ./.github/workflows/github-release-tag-dry-run.yaml
     with:
-      branch: acc
+      branch: ${{ github.ref_name }}
