@@ -1,6 +1,11 @@
 on:
   workflow_call:
-
+    inputs:
+      branch:
+        description: The branch to run this on
+        type: string
+        required: true
+        
 jobs:
   release-tag-dry-run:
     runs-on: ubuntu-latest
@@ -12,5 +17,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag_prefix: ""
-          release_branches: ${{ github.ref_name }}
+          release_branches: ${{ inputs.branch }}
           dry_run: true

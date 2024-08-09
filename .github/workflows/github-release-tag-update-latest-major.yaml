@@ -1,5 +1,3 @@
-name: Update latest Major Version
-
 on:
   workflow_call:
     inputs:
@@ -17,7 +15,7 @@ jobs:
           fetch-depth: 0
       - name: Get major version number
         id: major_version
-        run: echo major_version=$(echo "${{ inputs.new_tag }}" | cut -c1) >> $GITHUB_OUTPUT
+        run: echo "major_version=$(echo "${{ inputs.new_tag }}" | cut -c1)" >> "$GITHUB_OUTPUT"
       - name: Tag new target
         run: git tag -f v${{ steps.major_version.outputs.major_version }} ${{ inputs.new_tag }}
       - name: Push new tag

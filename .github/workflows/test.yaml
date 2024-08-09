@@ -10,5 +10,13 @@ on:
       - master
 
 jobs:
-  release-dry-run:
+  test-workflow:
+    uses: ./.github/workflows/github-test-workflow.yaml
+    permissions:
+      pull-requests: write
+
+  test-release-tag:
+    needs: test-workflow
     uses: ./.github/workflows/github-release-tag-dry-run.yaml
+    with:
+      branch: acc
