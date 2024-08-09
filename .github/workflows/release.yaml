@@ -11,7 +11,7 @@ jobs:
     permissions:
       contents: write
     with:
-      branch: acc
+      branch: ${{ github.ref_name }}
 
   retagging:
     needs: release-tag
