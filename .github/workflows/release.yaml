@@ -1,19 +1,12 @@
 name: Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      rollback-tag:
-        description: 'Tag version to rollback to'
-        required: true
-        type: number
   push:
     branches:
       - master
 
 jobs:
   release-tag:
-    if: ${{ github.event_name != 'workflow_dispatch' }}
     uses: ./.github/workflows/github-release-tag.yaml
     permissions:
       contents: write
@@ -21,10 +14,9 @@ jobs:
       branch: ${{ github.ref_name }}
 
   retagging:
-    if: ${{ !cancelled() && needs.release-tag.result != 'failure' }}
     needs: release-tag
     uses: ./.github/workflows/github-release-tag-update-latest-major.yaml
     permissions:
       contents: write
     with:
-      new_tag: ${{ needs.release-tag.outputs.new_tag || inputs.rollback-tag }}
+      new_tag: ${{ needs.release-tag.outputs.new_tag }}
