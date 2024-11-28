@@ -1,5 +1,11 @@
 on:
   workflow_call:
+    inputs:
+      actionlint_flags:
+        description: The branch to run this on
+        type: string
+        required: false
+        default: ''
   
 jobs:
     reviewdog:
@@ -13,3 +19,4 @@ jobs:
           with:
             reporter: github-pr-review
             fail_on_error: true
+            actionlint_flags: ${{ inputs.actionlint_flags }}
