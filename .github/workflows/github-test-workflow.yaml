@@ -1,11 +1,21 @@
 on:
   workflow_call:
     inputs:
-      actionlint_flags:
+      reviewdog_flags:
         description: The branch to run this on
         type: string
         required: false
         default: ''
+      level:
+        description: The branch to run this on
+        type: string
+        required: false
+        default: 'error'
+      fail_on_error:
+        description: The branch to run this on
+        type: boolean
+        required: false
+        default: true
   
 jobs:
     reviewdog:
@@ -18,5 +28,6 @@ jobs:
         - uses: reviewdog/action-actionlint@v1
           with:
             reporter: github-pr-review
-            fail_on_error: true
-            actionlint_flags: '${{ inputs.actionlint_flags }}'
+            level: ${{ inputs.level }}
+            fail_on_error: ${{ inputs.fail_on_error }}
+            reviewdog_flags: ${{ inputs.reviewdog_flags }}
