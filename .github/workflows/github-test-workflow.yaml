@@ -1,7 +1,7 @@
 on:
   workflow_call:
     inputs:
-      reviewdog_flags:
+      actionlint_flags:
         description: The branch to run this on
         type: string
         required: false
@@ -30,4 +30,4 @@ jobs:
             reporter: github-pr-review
             level: ${{ inputs.level }}
             fail_on_error: ${{ inputs.fail_on_error }}
-            reviewdog_flags: ${{ inputs.reviewdog_flags }}
+            actionlint_flags: ${{ inputs.actionlint_flags }}
