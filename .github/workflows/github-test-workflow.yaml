@@ -2,20 +2,20 @@ on:
   workflow_call:
     inputs:
       actionlint_flags:
-        description: The branch to run this on
+        description: 'actionlint flags. (actionlint -oneline <actionlint_flags>)'
         type: string
         required: false
         default: ''
       level:
-        description: The branch to run this on
+        description: 'Report level for reviewdog [info,warning,error]. It is same as -level flag of reviewdog.'
         type: string
         required: false
         default: 'error'
-      fail_on_error:
-        description: The branch to run this on
-        type: boolean
+      fail_level:
+        description: 'If set to none, always use exit code 0 for reviewdog. Otherwise, exit code 1 for reviewdog if it finds at least 1 issue with severity greater than or equal to the given level. Possible values: [none, any, info, warning, error]'
+        type: string
         required: false
-        default: true
+        default: error
   
 jobs:
     reviewdog:
@@ -29,5 +29,5 @@ jobs:
           with:
             reporter: github-pr-review
             level: ${{ inputs.level }}
-            fail_on_error: ${{ inputs.fail_on_error }}
+            fail_level: ${{ inputs.fail_level }}
             actionlint_flags: ${{ inputs.actionlint_flags }}
